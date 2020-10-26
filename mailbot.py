@@ -13,7 +13,7 @@ class mail_bot:
     def __init__(self, username, password):
         self.username = username
         self.password = password
-        self.driver = webdriver.Chrome(executable_path=r'C:\Users\Marcos\Downloads\chromedriver.exe')
+        self.driver = webdriver.Chrome(executable_path=r'C:\Users\pryst\OneDrive\Documentos\chromedriver.exe')
 
     def login(self):
         driver = self.driver
@@ -32,16 +32,19 @@ class mail_bot:
         passwordInput.clear()
         passwordInput.send_keys(self.password)
     
-        nextButton = driver.find_element_by_xpath("//*[@id='passwordNext']/span/span")  
+        nextButton = driver.find_element_by_xpath("//*[@id='passwordNext']/div/button/div[2]")  
         nextButton.click()
+        
 
     def clean_mailbox(self):
         driver = self.driver
         time.sleep(1)
 
         delete_button = driver.find_element_by_xpath("//*[@id=':4']/div/div[1]/div[1]/div/div/div[2]/div[3]")
-        element_content = driver.find_element_by_xpath("//div[@class='bsU']").text
-        check_box = driver.find_element_by_xpath("//*[@id=':23']/div[1]/span")
+        time.sleep(5)
+        element_content = driver.find_element_by_xpath("//*[@id=':ep']/div/div[2]/div").text
+        time.sleep(5)
+        check_box = driver.find_element_by_xpath("//*[@id=':1w']/div[1]/span")
 
         number_emails = int(element_content.replace('.', ''))
         while(number_emails > 0):
